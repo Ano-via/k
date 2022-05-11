@@ -4,9 +4,29 @@
    <link rel="stylesheet" href="index.css">
    <script type="text/javascript">
       var password=document.getElementById("password");
-      function genPassword() {
+      function normal8() {
+         var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+         var passwordLength = 8;
+         var password = "";
+         for (var i = 0; i <= passwordLength; i++) {
+            var randomNumber = Math.floor(Math.random() * chars.length);
+            password += chars.substring(randomNumber, randomNumber +1);
+         }
+         document.getElementById("password").value = password;
+       }
+	   function complex16() {
          var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-         var passwordLength = 12;
+         var passwordLength = 16;
+         var password = "";
+         for (var i = 0; i <= passwordLength; i++) {
+            var randomNumber = Math.floor(Math.random() * chars.length);
+            password += chars.substring(randomNumber, randomNumber +1);
+         }
+         document.getElementById("password").value = password;
+       }
+	   function normal16() {
+         var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+         var passwordLength = 16;
          var password = "";
          for (var i = 0; i <= passwordLength; i++) {
             var randomNumber = Math.floor(Math.random() * chars.length);
@@ -28,7 +48,9 @@
 <input type="text" name="" placeholder="创建密码" id="password" readonly>
 <table>
    <tr>
-      <th><div id="button" class="btn1"onclick="genPassword()">生成</div></th>
+      <th><div id="button" class="btn1"onclick="complex16()">16位复杂</div></th>
+	  <th><div id="button" class="btn2"onclick="normal16()">16位中等</div></th>
+	  <th><div id="button" class="btn2"onclick="normal8()">8位中等</div></th>
       <th><a  id="button" class="btn2" onclick="copyPassword()">复制</a></th>
    </tr>
    <tr>
