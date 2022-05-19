@@ -1,67 +1,99 @@
 <html>
-   <title>Lux的随机密码生成器</title>
+	<title>Lux的随机密码生成器</title>
 <head>
-   <link rel="stylesheet" href="index.css">
-   <script type="text/javascript">
-      var password=document.getElementById("password");
-      function normal8() {
-         var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-         var passwordLength = 8;
-         var password = "";
-         for (var i = 0; i <= passwordLength; i++) {
-            var randomNumber = Math.floor(Math.random() * chars.length);
-            password += chars.substring(randomNumber, randomNumber +1);
-         }
-         document.getElementById("password").value = password;
-       }
-	   function complex16() {
-         var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-         var passwordLength = 16;
-         var password = "";
-         for (var i = 0; i <= passwordLength; i++) {
-            var randomNumber = Math.floor(Math.random() * chars.length);
-            password += chars.substring(randomNumber, randomNumber +1);
-         }
-         document.getElementById("password").value = password;
-       }
-	   function normal16() {
-         var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-         var passwordLength = 16;
-         var password = "";
-         for (var i = 0; i <= passwordLength; i++) {
-            var randomNumber = Math.floor(Math.random() * chars.length);
-            password += chars.substring(randomNumber, randomNumber +1);
-         }
-         document.getElementById("password").value = password;
-       }
-     function copyPassword() {
-        var copyText = document.getElementById("password");
-        copyText.select();
-        copyText.setSelectionRange(0, 999);
-        document.execCommand("copy");
-     }
-   </script>
+	<link rel="stylesheet" href="index.css">
+	<script type="text/javascript">
+	var twofarequest=document.getElementById("twofarequest");
+	function normal8() {
+		var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		var passwordLength = 8;
+		var password = "";
+		for (var i = 0; i <= passwordLength; i++) {
+				var randomNumber = Math.floor(Math.random() * chars.length);
+				password += chars.substring(randomNumber, randomNumber +1);
+			}
+			document.getElementById("password").value = password;
+	}
+	function complex16() {
+		var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		var passwordLength = 16;
+		var password = "";
+		for (var i = 0; i <= passwordLength; i++) {
+			var randomNumber = Math.floor(Math.random() * chars.length);
+			password += chars.substring(randomNumber, randomNumber +1);
+		}
+		document.getElementById("password").value = password;
+	}
+	function normal16() {
+		var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		var passwordLength = 16;
+		var password = "";
+		for (var i = 0; i <= passwordLength; i++) {
+			var randomNumber = Math.floor(Math.random() * chars.length);
+			password += chars.substring(randomNumber, randomNumber +1);
+		}
+		document.getElementById("password").value = password;
+	}
+	function copyPassword() {
+		var copyText = document.getElementById("password");
+		copyText.select();
+		copyText.setSelectionRange(0, 999);
+		document.execCommand("copy");
+	}
+	function dividetext() {
+		var ptext = document.getElementById("pastetext").value;
+		ptext = ptext.replace(/\|\|\|/g,"\n");
+		ptext = ptext.replace(/\|\|/g,"\n");
+		ptext = ptext.replace(/\|/g,"\n");
+		ptext = ptext.replace(/---/g,"\n");
+		ptext = ptext.replace(/--/g,"\n");
+		document.getElementById("dividedtext").value = ptext;		
+		if (/[A-Za-z0-9]{32}/g.test(ptext) === true) {
+			var twofact = /[A-Z0-9]{32}/g.exec(ptext);
+		} 
+		else {
+			var twofact = /[A-Z0-9]{4}\s[A-Za-z0-9]{4}\s[A-Za-z0-9]{4}\s[A-Za-z0-9]{4}\s[A-Za-z0-9]{4}\s[A-Za-z0-9]{4}\s[A-Za-z0-9]{4}\s[A-Za-z0-9]{4}/g.exec(ptext);
+		}
+		document.getElementById("twofarequest").value = twofact;		
+	}
+	</script>
 </head>
-<body>   
-<div class="box"> 
-<h2>Lux的随机密码生成器</h2>
-<input type="text" name="" placeholder="创建密码" id="password" readonly>
-<table>
-   <tr>
-      <th><div id="button" class="btn1"onclick="complex16()">16位复杂</div></th>
-	  <th><div id="button" class="btn2"onclick="normal16()">16位中等</div></th>
-	  <th><div id="button" class="btn2"onclick="normal8()">8位中等</div></th>
-      <th><a  id="button" class="btn2" onclick="copyPassword()">复制</a></th>
-   </tr>
-   <tr>
-      <th><a  id="button" class="btn1" href="https://business.facebook.com/settings/people/" target="_blank">BM</a></th>
-      <th><a  id="button" class="btn2" href="https://business.facebook.com/events_manager2/browser_api" target="_blank">像素事件设置</a></th>
-   </tr>
-</table>
-</div>
+<body>
+<div class="content">
+	<div class="box"> 
+		<h2>Lux的随机密码生成器</h2>
+		<input type="text" name="" placeholder="创建密码" id="password" readonly>
+		<table>
+			<tr>
+				<th><div id="button" class="btn1"onclick="complex16()">16位复杂</div></th>
+				<th><div id="button" class="btn2"onclick="normal16()">16位中等</div></th>
+				<th><a id="button" class="btn2" onclick="copyPassword()">复制</a></th>
+			</tr>
+			<tr>
+				<th><div id="button" class="btn1"onclick="normal8()">8位中等</div></th>			
+				<th><a id="button" class="btn2" href="https://business.facebook.com/settings/people/" target="_blank">BM</a></th>
+				<th><a id="button" class="btn2" href="https://business.facebook.com/events_manager2/browser_api" target="_blank">像素事件设置</a></th>
+			</tr>
+		</table>
+	</div>
+	<div class="box">
+		<h2>Lux的账号处理器</h2>
+		<textarea cols="100" rows="6" placeholder="账号文本" id="pastetext"></textarea>
+		<textarea cols="100" rows="6" placeholder="处理结果" id="dividedtext"></textarea>
+		<input type="text" name="" placeholder="双重验证文本" id="twofarequest">
+		<input type="text" name="" placeholder="验证码结果" id="twofaresult" readonly>
+		<table>
+			<tr>
+				<th><div id="button" class="btn1" onclick="dividetext()">处理文本</div></th>
+				<th><div id="button" class="btn2" onclick="get2fa()">获取验证码</div></th>
+				<th><a id="button" class="btn2" href="https://outlook.live.com/owa/" target="_blank">Outlook邮箱</a></th>
+			<tr>
+		</table>
+	</div>
+</div>	
 <div id="footer">
-   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-   <span id="busuanzi_container_site_pv">总浏览量：<span id="busuanzi_value_site_pv"></span>次</span>
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	<span id="busuanzi_container_site_pv">总浏览量：<span id="busuanzi_value_site_pv"></span>次</span>
 </div>   
 </body>
 </html>
