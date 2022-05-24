@@ -11,35 +11,44 @@
 <div class="content">
 	<div class="box"> 
 		<h2>Lux的随机密码生成器</h2>
-		<input type="text" name="" placeholder="创建密码" id="password" readonly>
+		<input type="text" placeholder="创建密码" id="password" readonly>
 		<table>
 			<tr>
-				<th><div id="button" class="btn1"onclick="complex16()">16位复杂</div></th>
-				<th><div id="button" class="btn2"onclick="normal16()">16位中等</div></th>
-				<th><a id="button" class="btn2" onclick="copyPassword()">复制</a></th>
+				<th><div class="btn1" id="button" onclick="complex16()">16位复杂</div></th>
+				<th><div class="btn2" id="button" onclick="normal16()">16位中等</div></th>
+				<th><a class="btn2" id="button" onclick="copyPassword()">复制</a></th>
 			</tr>
 			<tr>
-				<th><div id="button" class="btn1"onclick="normal8()">8位中等</div></th>			
-				<th><a id="button" class="btn2" href="https://business.facebook.com/settings/people/" target="_blank">BM</a></th>
-				<th><a id="button" class="btn2" href="https://business.facebook.com/events_manager2/browser_api" target="_blank">像素事件设置</a></th>
+				<th><div class="btn1" id="button" onclick="normal8()">8位中等</div></th>			
+				<th><a class="btn2" id="button" href="https://business.facebook.com/settings/people/" target="_blank">BM</a></th>
+				<th><a class="btn2" id="button" href="https://business.facebook.com/events_manager2/browser_api" target="_blank">像素事件设置</a></th>
 			</tr>
 		</table>
 	</div>
 	<div class="box">
 		<h2>Lux的账号处理器</h2>
-		<textarea cols="100" rows="6" placeholder="账号文本" id="pastetext"></textarea>
+		<textarea cols="100" rows="3" placeholder="账号文本" id="pastetext"></textarea>
 		<textarea cols="100" rows="6" placeholder="处理结果" id="dividedtext"></textarea>
-		<input type="text" name="" placeholder="也可以直接粘贴2FA秘钥" id="twofarequest">
-		<input type="text" name="" placeholder="验证码结果" id="twofaresult" readonly>
+		<input type="text" placeholder="也可以直接粘贴2FA秘钥" id="twofarequest">
+		<!--<span id="refreshtime"></span>-->
 		<table>
 			<tr>
-				<th><div id="button" class="btn1" onclick="dividetext()">处理文本</div></th>
-				<th><div id="button" class="btn2" onclick="gettfa()">获取验证码</div></th>
-				<th><a id="button" class="btn2" href="https://outlook.live.com/owa/" target="_blank">Outlook邮箱</a></th>
+				<th><input type="text" placeholder="验证码结果" id="twofaresult" readonly></th>
+				<th><input type="text" placeholder="刷新倒计时" id="refreshtime" readonly></th>
+				<th><a id="copytfa" class="btn2" onclick="copytfa()">复制验证码</a></th>
+				
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<th><div class="btn1" id="button" onclick="dividetext()">处理文本</div></th>
+				<th><div class="btn2" id="button" onclick="gettfa()">获取验证码</div></th>
+				<th><a class="btn2" id="button" href="https://outlook.live.com/mail/0/" target="_blank">Outlook邮箱</a></th>
+				
 			<tr>
 		</table>
 	</div>
-</div>	
+</div>
 <div id="footer">
 	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 	<span id="busuanzi_container_site_pv">总访问量：<span id="busuanzi_value_site_pv"><i class="fa fa-spinner"></i></span>次</span>
