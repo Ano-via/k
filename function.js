@@ -6,10 +6,8 @@ function HOTP(K, C)
 	// the MSB effectively 0 in this case.
 	var count = [((C & 0xffffffff00000000) >> 32), C & 0xffffffff];
 	var otplength = 6;
-
 	var hmacsha1 = new sjcl.misc.hmac(key, sjcl.hash.sha1);
 	var code = hmacsha1.encrypt(count);
-
 	var offset = sjcl.bitArray.extract(code, 152, 8) & 0x0f;
 	var startBits = offset * 8;
 	var endBits = startBits + 4 * 8;
@@ -26,10 +24,41 @@ function HOTP(K, C)
 }
 function gettfa()
 {
-   var secret = document.getElementById('twofarequest').value;
-   var ctime = Math.floor((new Date() - 0) / 30000);
-   var otp = HOTP(secret, ctime);
-   document.getElementById("twofaresult").value = otp;
+	var secret = document.getElementById('twofarequest').value;
+	if (secret.length>0){		
+		var ctime = Math.floor((new Date() - 0) / 30000);
+		var otp = HOTP(secret, ctime);
+		document.getElementById("twofaresult").value = otp;
+	}
+}
+function refresh()
+{
+	var ptext = document.getElementById("pastetext").value;
+	var ptextresult = document.getElementById("dividedtext").value;
+	if (ptext.length>0 && ptextresult.length==0){
+		dividetext();
+	}
+	var secret = document.getElementById('twofarequest').value;
+	if (secret.length>0){
+		var ifTfa = document.getElementById('twofaresult').value;
+		if (ifTfa.length==0){
+			gettfa();
+			copytfa();
+		}
+		var refreshtime = 30 - Math.floor(((new Date() - 0) % 30000) / 1000);
+		document.getElementById("refreshtime").value = "还剩"+refreshtime+"秒";
+		if (refreshtime == 30){
+			gettfa();
+			document.getElementById("copytfa").innerHTML = "复制验证码";
+			var obj=document.getElementById('copytfa');
+			obj.style.backgroundColor = "#f2f2f2";
+			obj.style.color = "#000000";
+		} else if (refreshtime <= 3){
+			var obj=document.getElementById('copytfa');
+			obj.style.backgroundColor = "#ffeae6";
+			obj.style.color = "#991a00";
+		}
+	}
 }
 function normal8() {
 	var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -67,6 +96,21 @@ function copyPassword() {
 	copyText.setSelectionRange(0, 999);
 	document.execCommand("copy");
 }
+function copytfa() {
+	var ifTfa = document.getElementById("twofaresult").value;
+	if (ifTfa.length>0){
+		var copyTfaresult = document.getElementById("twofaresult");
+		copyTfaresult.select();
+		copyTfaresult.setSelectionRange(0, 999);
+		document.execCommand("copy");	
+		document.getElementById("copytfa").innerHTML = "√ 已复制验证码";
+		var obj=document.getElementById('copytfa');
+		obj.style.backgroundColor = "#daf2c2";
+		obj.style.color = "#397300";
+	} else {
+		document.getElementById("copytfa").innerHTML = "没有验证码";
+	}		
+}
 function dividetext() {
 	var ptext = document.getElementById("pastetext").value;
 	ptext = ptext.replace(/\|\|\|/g,"\n");
@@ -75,7 +119,7 @@ function dividetext() {
 	ptext = ptext.replace(/---/g,"\n");
 	ptext = ptext.replace(/--/g,"\n");
 	document.getElementById("dividedtext").value = ptext;		
-	if (/[A-Za-z0-9]{32}/g.test(ptext) === true) {
+	if (/[A-Za-z0-9]{32}/g.test(ptext) == true) {
 		var twofact = /[A-Z0-9]{32}/g.exec(ptext);
 	} 
 	else {
@@ -85,4 +129,6 @@ function dividetext() {
 	var timestamp1 = Date.parse( new Date());
 	var tc = Math.floor(timestamp1/30000);
 	gettfa();
+	copytfa();
 }
+setInterval("refresh()",1000);
