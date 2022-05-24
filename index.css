@@ -35,7 +35,7 @@ body {
 }
 input {
 	margin-top: 20px;
-	padding: 20px;
+	padding: 15px;
 	user-select: none;
 	height: 50px;
 	width: 530px;
@@ -48,6 +48,15 @@ input {
 input::placeholder{
 	font-size: 23px;
 }
+#twofaresult{
+	width: 155px;
+	text-align: center;
+}
+#refreshtime{
+	margin-left: 30px;
+	width: 155px;
+	text-align: center;
+}
 textarea {
 	width: 530px;
 	margin-top: 20px;
@@ -57,13 +66,12 @@ textarea {
 }
 textarea::placeholder{
 	font-size: 23px;
-	padding: 10px;
+	padding: 5px;
 }
-#button {
+.btn1{
     font-family: sans-serif;
     font-size: 15px;
-    margin-top: 40px;
-    /*border: 1px solid #666666;*/
+    margin-top: 20px;
     width: 155px;
     height: 50px;
     text-align: center;
@@ -78,8 +86,22 @@ textarea::placeholder{
 }
 .btn2{
     margin-left: 30px;
+	font-family: sans-serif;
+    font-size: 15px;
+    margin-top: 20px;
+    width: 155px;
+    height: 50px;
+    text-align: center;
+    background-color: rgb(242, 242, 242);
+    display: flex;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 7px;
+	text-decoration: none;
 }
-#button:hover {
+#button:hover{
     color: black;
     background-color: rgb(229,229,229);
 }
@@ -93,7 +115,7 @@ textarea::placeholder{
 	position: absolute; 
 	bottom: 0; 
 	width: 100%; 
-	height: 30px;/*脚部的高度*/ 
+	height: 30px;
 	background: white; 
 	clear: both; 
 	text-indent: 2em;
