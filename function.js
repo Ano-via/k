@@ -126,6 +126,7 @@ function dividetext() {
 	else {
 		var twofact = /[A-Z0-9]{4}\s[A-Za-z0-9]{4}\s[A-Za-z0-9]{4}\s[A-Za-z0-9]{4}\s[A-Za-z0-9]{4}\s[A-Za-z0-9]{4}\s[A-Za-z0-9]{4}\s[A-Za-z0-9]{4}/g.exec(ptext);
 	}
+	document.getElementById("metalink").setAttribute("href", "https://mbasic.facebook.com?email="+ptext.substring(0,ptext.indexOf("\n")))
 	document.getElementById("twofarequest").value = twofact;
 	var timestamp1 = Date.parse( new Date());
 	var tc = Math.floor(timestamp1/30000);
