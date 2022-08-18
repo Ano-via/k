@@ -118,6 +118,7 @@ function dividetext() {
 	ptext = ptext.replace(/\|/g,"\n");
 	ptext = ptext.replace(/---/g,"\n");
 	ptext = ptext.replace(/--/g,"\n");
+	ptext = ptext.replace(/\t/g,"\n");
 	document.getElementById("dividedtext").value = ptext;		
 	if (/[A-Za-z0-9]{32}/g.test(ptext) == true) {
 		var twofact = /[A-Z0-9]{32}/g.exec(ptext);
