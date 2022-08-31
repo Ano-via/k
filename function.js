@@ -119,14 +119,10 @@ function dividetext() {
 	ptext = ptext.replace(/---/g,"\n");
 	ptext = ptext.replace(/--/g,"\n");
 	ptext = ptext.replace(/\t/g,"\n");
-	document.getElementById("dividedtext").value = ptext;		
-	if (/[A-Za-z0-9]{32}/g.test(ptext) == true) {
-		var twofact = /[A-Z0-9]{32}/g.exec(ptext);
-	} 
-	else {
-		var twofact = /[A-Z0-9]{4}\s[A-Za-z0-9]{4}\s[A-Za-z0-9]{4}\s[A-Za-z0-9]{4}\s[A-Za-z0-9]{4}\s[A-Za-z0-9]{4}\s[A-Za-z0-9]{4}\s[A-Za-z0-9]{4}/g.exec(ptext);
-	}
+	ptext = ptext.replace(/\u0020/g,"");
+	document.getElementById("dividedtext").value = ptext;			
 	document.getElementById("metalink").setAttribute("href", "https://mbasic.facebook.com?email="+ptext.substring(0,ptext.indexOf("\n")))
+	var twofact = /[A-Z0-9]{32}/g.exec(ptext);
 	document.getElementById("twofarequest").value = twofact;
 	var timestamp1 = Date.parse( new Date());
 	var tc = Math.floor(timestamp1/30000);
