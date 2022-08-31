@@ -103,7 +103,7 @@ function copytfa() {
 		copyTfaresult.select();
 		copyTfaresult.setSelectionRange(0, 999);
 		document.execCommand("copy");	
-		document.getElementById("copytfa").innerHTML = "√ 已复制验证码";
+		document.getElementById("copytfa").innerHTML = "✅ 已复制验证码";
 		var obj=document.getElementById('copytfa');
 		obj.style.backgroundColor = "#daf2c2";
 		obj.style.color = "#397300";
