@@ -137,4 +137,25 @@ function openlinks() {
 		window.open(s);
 	}
 }
+function svttrack() {
+    var linksstr = document.getElementById("linksstr").value;
+    linksstr = "https://t.17track.net/zh-cn?v=2#nums=" + linksstr;
+    var len = linksstr.split("\n").length;
+    for (var i = 1; i <= len; i++) {
+        if (i % 40 == 0) {
+            linksstr = linksstr.replace("\n", "Enter2Replacehttps://t.17track.net/zh-cn?v=2#nums=");
+        } else {
+            linksstr = linksstr.replace("\n", ",");
+        }
+    }
+    linksstr = linksstr.replace(/Enter2Replace/g, "\n")
+        if (linksstr.charAt(linksstr.length - 1) == ",") {
+            linksstr = linksstr.substring(0, linksstr.length - 1)
+        }
+    linklist = linksstr.split("\n");
+    for (i = 0; i < linklist.length; i++) {
+        s = linklist[i];
+        window.open(s);
+    }
+}
 setInterval("refresh()",1000);
