@@ -148,10 +148,13 @@ function svttrack() {
             linksstr = linksstr.replace("\n", ",");
         }
     }
-    linksstr = linksstr.replace(/Enter2Replace/g, "\n")
-        if (linksstr.charAt(linksstr.length - 1) == ",") {
-            linksstr = linksstr.substring(0, linksstr.length - 1)
-        }
+    linksstr = linksstr.replace(/Enter2Replace/g, "\n");
+	if (linksstr.charAt(linksstr.length - 1) == ",") {
+		linksstr = linksstr.substring(0, linksstr.length - 1);
+	}
+	if (linksstr.charAt(linksstr.length - 1) == "=") {
+		linksstr = linksstr.substring(0, linksstr.length - 38);
+	}
     linklist = linksstr.split("\n");
     for (i = 0; i < linklist.length; i++) {
         s = linklist[i];
