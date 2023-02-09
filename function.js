@@ -56,6 +56,24 @@ function refresh() {
         }
     }
 }
+function getParameterByName(name) {
+    var url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+
+var passwordinurl = getParameterById("password");
+var accountinurl = getParameterById("pastetext");
+if (passwordinurl) {
+	document.getElementById("password").innerHTML = passwordinurl;
+}
+if (accountinurl) {
+	document.getElementById("pastetext").innerHTML = accountinurl;
+}
 function normal8() {
     var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     var passwordLength = 8;
@@ -65,7 +83,7 @@ function normal8() {
         password += chars.substring(randomNumber, randomNumber + 1);
     }
     document.getElementById("password").value = password;
-    document.getElementById("buttonc").setAttribute("href", "/?password=" + document.getElementById("password").value);
+	document.getElementById("buttonc").setAttribute("href", "/?password=" + document.getElementById("password").value + "&pastetext=" + document.getElementById("pastetext").value);
 }
 function complex16() {
     var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -76,7 +94,7 @@ function complex16() {
         password += chars.substring(randomNumber, randomNumber + 1);
     }
     document.getElementById("password").value = password;
-    document.getElementById("buttonc").setAttribute("href", "/?password=" + document.getElementById("password").value);
+	document.getElementById("buttonc").setAttribute("href", "/?password=" + document.getElementById("password").value + "&pastetext=" + document.getElementById("pastetext").value);
 }
 function normal16() {
     var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -87,7 +105,7 @@ function normal16() {
         password += chars.substring(randomNumber, randomNumber + 1);
     }
     document.getElementById("password").value = password;
-    document.getElementById("buttonc").setAttribute("href", "/?password=" + document.getElementById("password").value);
+	document.getElementById("buttonc").setAttribute("href", "/?password=" + document.getElementById("password").value + "&pastetext=" + document.getElementById("pastetext").value);
 }
 function copyPassword() {
     var copyText = document.getElementById("password");
@@ -149,7 +167,7 @@ function svttrack() {
             linksstr = linksstr.replace("\n", ",");
         }
     }
-    linksstr = linksstr.replace(/,,/g, ",");
+	linksstr = linksstr.replace(/,,/g, ",");
     linksstr = linksstr.replace(/Enter2Replace/g, "\n");
     if (linksstr.charAt(linksstr.length - 1) == ",") {
         linksstr = linksstr.substring(0, linksstr.length - 1);
