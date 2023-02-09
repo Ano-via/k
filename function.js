@@ -65,7 +65,7 @@ function normal8() {
         password += chars.substring(randomNumber, randomNumber + 1);
     }
     document.getElementById("password").value = password;
-    document.getElementById("buttonc").setAttribute("href", "/?password=" + password);
+    document.getElementById("buttonc").setAttribute("href", "/?password=" + document.getElementById("password").value);
 }
 function complex16() {
     var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -76,7 +76,7 @@ function complex16() {
         password += chars.substring(randomNumber, randomNumber + 1);
     }
     document.getElementById("password").value = password;
-    document.getElementById("buttonc").setAttribute("href", "/?password=" + password);
+    document.getElementById("buttonc").setAttribute("href", "/?password=" + document.getElementById("password").value);
 }
 function normal16() {
     var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -87,7 +87,7 @@ function normal16() {
         password += chars.substring(randomNumber, randomNumber + 1);
     }
     document.getElementById("password").value = password;
-    document.getElementById("buttonc").setAttribute("href", "/?password=" + password);
+    document.getElementById("buttonc").setAttribute("href", "/?password=" + document.getElementById("password").value);
 }
 function copyPassword() {
     var copyText = document.getElementById("password");
