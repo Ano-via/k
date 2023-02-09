@@ -122,6 +122,10 @@ textarea::placeholder{
     color: black;
     background-color: rgb(229,229,229);
 }
+#buttonc:hover{
+    color: black;
+    background-color: rgb(229,229,229);
+}
 #password{
 	margin-top: 0px;
 }
