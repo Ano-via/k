@@ -161,4 +161,41 @@ function svttrack() {
         window.open(s);
     }
 }
+
+function soetrack() {
+    var linksstr = document.getElementById("linksstr").value;
+    linksstr = "https://www.track718.us/zh-CN/detail?nums=" + linksstr;
+    var len = linksstr.split("\n").length;
+    for (var i = 1; i <= len; i++) {
+        if (i % 40 == 0) {
+            linksstr = linksstr.replace("\n", "Enter2Replacehttps://www.track718.us/zh-CN/detail?nums=");
+        } else {
+            linksstr = linksstr.replace("\n", ",");
+        }
+    }
+	linksstr = linksstr.replace(/,,/g, ",");
+    linksstr = linksstr.replace(/Enter2Replace/g, "\n");
+    if (linksstr.charAt(linksstr.length - 1) == ",") {
+        linksstr = linksstr.substring(0, linksstr.length - 1);
+    }
+    if (linksstr.charAt(linksstr.length - 1) == "=") {
+        linksstr = linksstr.substring(0, linksstr.length - 43);
+    }
+    linklist = linksstr.split("\n");
+    for (i = 0; i < linklist.length; i++) {
+        s = linklist[i];
+        window.open(s);
+    }
+}
+
+function delparentheses() {
+	var linksstr = document.getElementById("linksstr").value;
+	var result = linksstr.replace(/ *\([^)]*\)/g, "");
+	document.getElementById("linksstr").value = result;
+	var copyText = document.getElementById("linksstr");
+    copyText.select();
+    copyText.setSelectionRange(0, 999);
+    document.execCommand("copy");
+}
+
 setInterval("refresh()", 1000);
