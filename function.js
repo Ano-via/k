@@ -204,7 +204,7 @@ function delparentheses() {
 		obj.innerHTML = "去括号 + 复制";
 		obj.style.backgroundColor = "#f2f2f2";
 		obj.style.color = "#000000";
-	}, 5000);
+	}, 3000);
 }
 
 setInterval("refresh()", 1000);
