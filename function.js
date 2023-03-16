@@ -196,6 +196,15 @@ function delparentheses() {
     copyText.select();
     copyText.setSelectionRange(0, 999);
     document.execCommand("copy");
+	document.getElementById("delparentheses").innerHTML = "√ 已复制";
+	var obj = document.getElementById('delparentheses');
+	obj.style.backgroundColor = "#daf2c2";
+	obj.style.color = "#397300";
+	setTimeout(function(){
+		obj.innerHTML = "去括号 + 复制";
+		obj.style.backgroundColor = "#f2f2f2";
+		obj.style.color = "#000000";
+	}, 5000);
 }
 
 setInterval("refresh()", 1000);
