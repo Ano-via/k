@@ -72,8 +72,8 @@ textarea::placeholder{
 .toplogo{
 	position:absolute;
 	top:5px;
-   left:15px;
-	width:30px;
+   	left:15px;
+	width:24px;
 }
 .btn1{
     font-family: sans-serif;
