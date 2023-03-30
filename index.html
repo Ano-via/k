@@ -233,16 +233,16 @@
 	  <!-- Calculate the number of days ahead of 2023-5-11 using JavaScript -->
 	  <script>
 		// Set the target date to May 11, 2023
-		var targetDate = new Date("2023-05-11");
-		
+		var targetDate1 = new Date("2023-05-11");
+		var targetDate2 = new Date("2023-08-18");
 		// Get the current date
 		var currentDate = new Date();
 		
 		// Calculate the difference in days between the two dates
-		var diffInDays = Math.floor((targetDate - currentDate) / (1000 * 60 * 60 * 24));
-		
+		var diffInDays1 = Math.floor((targetDate1 - currentDate) / (1000 * 60 * 60 * 24));
+		var diffInDays2 = Math.floor((targetDate2 - currentDate) / (1000 * 60 * 60 * 24));
 		// Output the number of days ahead
-		document.write("域名还剩" + diffInDays + "天过期。续费还需69.65元。");
+		document.write("域名1还剩" + diffInDays1 + "天过期。"+"域名2还剩" + diffInDays2 + "天过期。续费还需139.30元。");
 	  </script>
 	</span>
 </div>   
