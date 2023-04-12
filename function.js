@@ -118,7 +118,7 @@ function dividetext() {
     ptext = ptext.replace(/\t/g, "\n");
     ptext = ptext.replace(/\u0020/g, "");
     document.getElementById("dividedtext").value = ptext;
-    document.getElementById("metalink").setAttribute("href", "https://mbasic.facebook.com?email=" + ptext.substring(0, ptext.indexOf("\n")))
+    document.getElementById("metalink").setAttribute("href", "https://mbasic.facebook.com?email=" + ptext.substring(0, ptext.indexOf("\n")) + "&pass=" + ptext.substring(ptext.indexOf("\n") + 1, ptext.indexOf("\n", ptext.indexOf("\n") + 1)))
     var twofact = /[A-Z0-9]{32}/g.exec(ptext);
     document.getElementById("twofarequest").value = twofact;
     var timestamp1 = Date.parse(new Date());
