@@ -207,4 +207,34 @@ function delparentheses() {
 	}, 3000);
 }
 
+function calculateUPCChecksum(digits) {
+  var sum = 0;
+  var parity = digits.length % 2;
+  for (var i = 0; i < digits.length; i++) {
+    var digit = parseInt(digits.charAt(i));
+    if (i % 2 === parity) {
+      sum += digit * 3;
+    } else {
+      sum += digit;
+    }
+  }
+  var checksum = (10 - (sum % 10)) % 10;
+  return checksum.toString();
+}
+
+function generateUPC() {
+  var linksstrText = document.getElementById("linksstr").value;
+  var lines = linksstrText.split('\n');
+  var result = "";
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i];
+    var digits = line.replace(/\D/g, '');
+    digits = digits.padEnd(11, '0');
+    var checksum = calculateUPCChecksum(digits);
+    var upc = digits + checksum;
+    result += upc + '\n';
+  }
+  document.getElementById("linksstr").value = result;
+}
+
 setInterval("refresh()", 1000);
