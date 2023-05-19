@@ -235,6 +235,19 @@ function generateUPC() {
     result += upc + '\n';
   }
   document.getElementById("linksstr").value = result;
+  var copyText = document.getElementById("linksstr");
+    copyText.select();
+    copyText.setSelectionRange(0, 999);
+    document.execCommand("copy");
+	document.getElementById("bulkupc").innerHTML = "√ 已复制";
+	var obj = document.getElementById('bulkupc');
+	obj.style.backgroundColor = "#daf2c2";
+	obj.style.color = "#397300";
+	setTimeout(function(){
+		obj.innerHTML = '<img height="50%" src="https://img.icons8.com/pulsar-color/48/barcode.png" alt="upc"/>&nbsp;批量UPC';
+		obj.style.backgroundColor = "#f2f2f2";
+		obj.style.color = "#000000";
+	}, 3000);
 }
 
 setInterval("refresh()", 1000);
