@@ -231,7 +231,7 @@ function generateUPC() {
     var digits = line.replace(/\D/g, '');
     digits = digits.padEnd(11, '0');
     var checksum = calculateUPCChecksum(digits);
-    var upc = digits + checksum;
+    var upc = digits.substring(0, 11) + checksum;
     result += upc + '\n';
   }
   document.getElementById("linksstr").value = result;
