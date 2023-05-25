@@ -207,38 +207,34 @@ function delparentheses() {
 	}, 3000);
 }
 
-function calculateUPCChecksum(digits) {
-  var sum = 0;
-  var parity = digits.length % 2;
-  for (var i = 0; i < digits.length; i++) {
-    var digit = parseInt(digits.charAt(i));
-    if (i % 2 === parity) {
-      sum += digit * 3;
-    } else {
-      sum += digit;
-    }
-  }
-  var checksum = (10 - (sum % 10)) % 10;
-  return checksum.toString();
-}
-
 function generateUPC() {
-  var linksstrText = document.getElementById("linksstr").value;
-  var lines = linksstrText.split('\n');
-  var result = "";
-  for (var i = 0; i < lines.length; i++) {
-    var line = lines[i];
-    var digits = line.replace(/\D/g, '');
-    digits = digits.padEnd(11, '0');
-    var checksum = calculateUPCChecksum(digits);
-    var upc = digits.substring(0, 11) + checksum;
-    result += upc + '\n';
-  }
-  document.getElementById("linksstr").value = result;
-  var copyText = document.getElementById("linksstr");
-    copyText.select();
-    copyText.setSelectionRange(0, 999);
-    document.execCommand("copy");
+	var linksstrElement = document.getElementById("linksstr");
+	var content = linksstrElement.value;
+	var numbers = content.replace(/[a-zA-Z-]/g, "");
+	var lines = numbers.split("\n");
+	var processedNumbers = [];
+	for (var i = 0; i < lines.length; i++) {
+		var number = lines[i];
+		if (number.length < 11) {
+			number = number.padEnd(11, "0");
+		}
+		else if (number.length > 11) {
+			number = number.substring(0, 11);
+		}
+		var sum = 0;
+		for (var j = 0; j < 11; j++) {
+			var digit = parseInt(number[j]);
+			sum += (j % 2 === 0) ? digit * 3 : digit;
+		}
+		var checkDigit = (10 - (sum % 10)) % 10;
+		number += checkDigit;
+		processedNumbers.push(number);
+	}
+	linksstrElement.value = processedNumbers.join("\n");
+	var copyText = document.getElementById("linksstr");
+		copyText.select();
+		copyText.setSelectionRange(0, 999);
+		document.execCommand("copy");
 	document.getElementById("bulkupc").innerHTML = "√ 已复制";
 	var obj = document.getElementById('bulkupc');
 	obj.style.backgroundColor = "#daf2c2";
