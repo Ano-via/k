@@ -147,7 +147,7 @@ function svttrack() {
             linksstr = linksstr.replace("\n", ",");
         }
     }
-    linksstr = linksstr.replace(/,,/g, ",");
+	linksstr = linksstr.replace(/,,/g, ",");
     linksstr = linksstr.replace(/Enter2Replace/g, "\n");
     if (linksstr.charAt(linksstr.length - 1) == ",") {
         linksstr = linksstr.substring(0, linksstr.length - 1);
@@ -173,7 +173,7 @@ function soetrack() {
             linksstr = linksstr.replace("\n", ",");
         }
     }
-    linksstr = linksstr.replace(/,,/g, ",");
+	linksstr = linksstr.replace(/,,/g, ",");
     linksstr = linksstr.replace(/Enter2Replace/g, "\n");
     if (linksstr.charAt(linksstr.length - 1) == ",") {
         linksstr = linksstr.substring(0, linksstr.length - 1);
@@ -189,144 +189,65 @@ function soetrack() {
 }
 
 function delparentheses() {
-    var linksstr = document.getElementById("linksstr").value;
-    var result = linksstr.replace(/ *\([^)]*\)/g, "");
-    document.getElementById("linksstr").value = result;
-    var copyText = document.getElementById("linksstr");
+	var linksstr = document.getElementById("linksstr").value;
+	var result = linksstr.replace(/ *\([^)]*\)/g, "");
+	document.getElementById("linksstr").value = result;
+	var copyText = document.getElementById("linksstr");
     copyText.select();
     copyText.setSelectionRange(0, 999);
     document.execCommand("copy");
-    document.getElementById("delparentheses").innerHTML = "√ 已复制";
-    var obj = document.getElementById('delparentheses');
-    obj.style.backgroundColor = "#daf2c2";
-    obj.style.color = "#397300";
-    setTimeout(function () {
-        obj.innerHTML = "去括号 + 复制";
-        obj.style.backgroundColor = "#f2f2f2";
-        obj.style.color = "#000000";
-    }, 3000);
+	document.getElementById("delparentheses").innerHTML = "√ 已复制";
+	var obj = document.getElementById('delparentheses');
+	obj.style.backgroundColor = "#daf2c2";
+	obj.style.color = "#397300";
+	setTimeout(function(){
+		obj.innerHTML = "去括号 + 复制";
+		obj.style.backgroundColor = "#f2f2f2";
+		obj.style.color = "#000000";
+	}, 3000);
 }
 
 function calculateUPCChecksum(digits) {
-    var sum = 0;
-    var parity = digits.length % 2;
-
-    for (var i = 0; i < digits.length; i++) {
-        var digit = parseInt(digits.charAt(i));
-        if (i % 2 === parity) {
-            sum += digit * 3;
-        } else {
-            sum += digit;
-        }
+  var sum = 0;
+  var parity = digits.length % 2;
+  for (var i = 0; i < digits.length; i++) {
+    var digit = parseInt(digits.charAt(i));
+    if (i % 2 === parity) {
+      sum += digit * 3;
+    } else {
+      sum += digit;
     }
-
-    var checksum = (10 - (sum % 10)) % 10;
-    return checksum.toString();
+  }
+  var checksum = (10 - (sum % 10)) % 10;
+  return checksum.toString();
 }
 
 function generateUPC() {
-    // 获取id为"linksstr"的元素
-    var linksstrElement = document.getElementById("linksstr");
-
-    // 获取元素内容并提取数字
-    var content = linksstrElement.value;
-    var numbers = content.replace(/[a-zA-Z-]/g, "");
-    var lines = numbers.split("\n");
-    console.log(lines);
-    // 处理每个数字
-    var processedNumbers = [];
-    for (var i = 0; i < lines.length; i++) {
-        var number = lines[i];
-
-        // 如果数字不足11位，在末尾补0补足11位
-        if (number.length < 11) {
-            number = number.padEnd(11, "0");
-        }
-        // 如果数字超过11位，截取前11位数字
-        else if (number.length > 11) {
-            number = number.substring(0, 11);
-        }
-
-        // 计算UPC校验位
-        var sum = 0;
-        for (var j = 0; j < 11; j++) {
-            var digit = parseInt(number[j]);
-            sum += (j % 2 === 0) ? digit * 3 : digit;
-        }
-        var checkDigit = (10 - (sum % 10)) % 10;
-
-        // 添加UPC校验位到数字末尾
-        number += checkDigit;
-
-        processedNumbers.push(number);
-    }
-
-    // 更新id为"linksstr"的元素内容
-    linksstrElement.value = processedNumbers.join("\n");
-
+  var linksstrText = document.getElementById("linksstr").value;
+  var lines = linksstrText.split('\n');
+  var result = "";
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i];
+    var digits = line.replace(/\D/g, '');
+    digits = digits.padEnd(11, '0');
+    var checksum = calculateUPCChecksum(digits);
+    var upc = digits + checksum;
+    result += upc + '\n';
+  }
+  document.getElementById("linksstr").value = result;
+  var copyText = document.getElementById("linksstr");
+    copyText.select();
+    copyText.setSelectionRange(0, 999);
+    document.execCommand("copy");
+	document.getElementById("bulkupc").innerHTML = "√ 已复制";
+	var obj = document.getElementById('bulkupc');
+	obj.style.backgroundColor = "#daf2c2";
+	obj.style.color = "#397300";
+	setTimeout(function(){
+		obj.innerHTML = '<img height="50%" src="https://img.icons8.com/pulsar-color/48/barcode.png" alt="upc"/>&nbsp;批量UPC';
+		obj.style.backgroundColor = "#f2f2f2";
+		obj.style.color = "#000000";
+	}, 3000);
 }
 
-function multiTranslate() {
-    var appid = '20210514000826949';
-    var key = 'ML9wLZ6X0RqB4gjwmpXN';
-    var salt = (new Date).getTime();
-    var query = document.getElementById("linksstr").value; // 获取id为linksstr的内容
-    var from = 'auto'; // 源语言为自动检测
-    var toLanguages = ['spa', 'fra', 'de', 'jp', 'kor', 'ru', 'ara', 'it', 'pt']; // 目标语言数组
-    var translations = [];
-    var obj = document.getElementById('multitranslate');
-    obj.style.backgroundColor = "#e5e5e5";
-    obj.style.color = "#7e7e7e";
-
-    function translateText(index) {
-        document.getElementById("multitranslate").innerHTML = "翻译中 （" + (9 - index) + "s）";
-        if (index >= toLanguages.length) {
-            var result = translations.join(', ');
-            console.log(result);
-            var copyText = document.getElementById("linksstr");
-            copyText.select();
-            copyText.setSelectionRange(0, 999);
-            document.execCommand("copy");
-            document.getElementById("multitranslate").innerHTML = "√ 已复制";
-            obj.style.backgroundColor = "#daf2c2";
-            obj.style.color = "#397300";
-            setTimeout(function () {
-                obj.innerHTML = "多重翻译";
-                obj.style.backgroundColor = "#f2f2f2";
-                obj.style.color = "#000000";
-            }, 3000);
-            return;
-        }
-
-        var to = toLanguages[index];
-        console.log(to);
-        var str1 = appid + query + salt + key;
-        var sign = MD5(str1);
-
-        $.ajax({
-            url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
-            type: 'get',
-            dataType: 'jsonp',
-            data: {
-                q: query,
-                appid: appid,
-                salt: salt,
-                from: from,
-                to: to,
-                sign: sign
-            },
-            success: function (data) {
-                console.log(data);
-                translations.push(data.trans_result[0].dst.toLowerCase());
-                console.log(translations);
-                document.getElementById("linksstr").value = translations;
-                setTimeout(function () {
-                    translateText(index + 1); // 递归调用翻译下一个语言
-                }, 1000); // 等待1秒钟
-            }
-        });
-    }
-
-    translateText(0); // 开始翻译第一个语言
-}
 setInterval("refresh()", 1000);
