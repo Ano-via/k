@@ -246,4 +246,66 @@ function generateUPC() {
 	}, 3000);
 }
 
+function multiTranslate() {
+    var appid = '20210514000826949';
+    var key = 'ML9wLZ6X0RqB4gjwmpXN';
+    var salt = (new Date).getTime();
+    var query = document.getElementById("linksstr").value; // 获取id为linksstr的内容
+    var from = 'auto'; // 源语言为自动检测
+    var toLanguages = ['spa', 'fra', 'de', 'jp', 'kor', 'ru', 'ara', 'it', 'pt']; // 目标语言数组
+    var translations = [];
+    var obj = document.getElementById('multitranslate');
+    obj.style.backgroundColor = "#e5e5e5";
+    obj.style.color = "#7e7e7e";
+
+    function translateText(index) {
+        document.getElementById("multitranslate").innerHTML = "翻译中 （" + (9 - index) + "s）";
+        if (index >= toLanguages.length) {
+            var result = translations.join(', ');
+            console.log(result);
+            var copyText = document.getElementById("linksstr");
+            copyText.select();
+            copyText.setSelectionRange(0, 999);
+            document.execCommand("copy");
+            document.getElementById("multitranslate").innerHTML = "√ 已复制";
+            obj.style.backgroundColor = "#daf2c2";
+            obj.style.color = "#397300";
+            setTimeout(function () {
+                obj.innerHTML = "多重翻译";
+                obj.style.backgroundColor = "#f2f2f2";
+                obj.style.color = "#000000";
+            }, 3000);
+            return;
+        }
+
+        var to = toLanguages[index];
+        console.log(to);
+        var str1 = appid + query + salt + key;
+        var sign = MD5(str1);
+
+        $.ajax({
+            url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
+            type: 'get',
+            dataType: 'jsonp',
+            data: {
+                q: query,
+                appid: appid,
+                salt: salt,
+                from: from,
+                to: to,
+                sign: sign
+            },
+            success: function (data) {
+                console.log(data);
+                translations.push(data.trans_result[0].dst.toLowerCase());
+                console.log(translations);
+                document.getElementById("linksstr").value = translations;
+                setTimeout(function () {
+                    translateText(index + 1); // 递归调用翻译下一个语言
+                }, 1000); // 等待1秒钟
+            }
+        });
+    }
+
+    translateText(0); // 开始翻译第一个语言
 setInterval("refresh()", 1000);
