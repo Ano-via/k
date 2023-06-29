@@ -191,6 +191,7 @@ function soetrack() {
 function delparentheses() {
 	var linksstr = document.getElementById("linksstr").value;
 	var result = linksstr.replace(/ *\([^)]*\)/g, "");
+	result = result.replace("\n", ",");
 	document.getElementById("linksstr").value = result;
 	var copyText = document.getElementById("linksstr");
     copyText.select();
