@@ -190,8 +190,8 @@ function soetrack() {
 
 function delparentheses() {
 	var linksstr = document.getElementById("linksstr").value;
-	var result = linksstr.replace(/ *\([^)]*\)/g, "");
-	var count = (result.match(/\/n/g) || []).length;
+	var count = (linksstr.match(/\/n/g) || []).length;
+	var result = linksstr.replace(/ *\([^)]*\)/g, "");	
 	result = result.replace(/\n/g, ",");	
 	console.log(count);
 	document.getElementById("linksstr").value = result;
