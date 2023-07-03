@@ -190,10 +190,8 @@ function soetrack() {
 
 function delparentheses() {
 	var linksstr = document.getElementById("linksstr").value;
-	var count = (linksstr.match(/\/n/g) || []).length;
 	var result = linksstr.replace(/ *\([^)]*\)/g, "");	
 	result = result.replace(/\n/g, ",");	
-	console.log(count);
 	document.getElementById("linksstr").value = result;
 	var copyText = document.getElementById("linksstr");
     copyText.select();
@@ -207,7 +205,6 @@ function delparentheses() {
 		obj.innerHTML = "去括号 + 复制";
 		obj.style.backgroundColor = "#f2f2f2";
 		obj.style.color = "#000000";
-		document.getElementById("tips1").innerHTML = "有"+ count +"行";
 	}, 3000);
 }
 
