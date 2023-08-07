@@ -55,6 +55,10 @@ function refresh() {
             obj.style.color = "#991a00";
         }
     }
+    var countstr = document.getElementById("linksstr").value;
+	if (countstr.length > 0) {
+		countTextOcc();
+	}
 }
 
 function normal8() {
@@ -250,5 +254,16 @@ function generateUPC() {
 		obj.style.color = "#000000";
 	}, 3000);
 }
+function countTextOcc() {
+	var str1 = document.getElementById("linksstr").value;
+	// Count the number of lines
+	const linesCount = str1.split(/\r\n|\r|\n/).length;
 
+	// Count the number of commas
+	const commasCount = (str1.match(/,/g) || []).length + 1;
+
+	console.log("Number of lines:", linesCount);
+	console.log("Number of commas:", commasCount);
+	document.getElementById("countLinesNCommas").innerText = "行数："+linesCount+" | 分词数："+commasCount;
+}
 setInterval("refresh()", 1000);
