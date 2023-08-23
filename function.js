@@ -258,12 +258,12 @@ function countTextOcc() {
 	var str1 = document.getElementById("linksstr").value;
 	// Count the number of lines
 	const linesCount = str1.split(/\r\n|\r|\n/).length;
-
+	const linesLength = str1.length;
 	// Count the number of commas
 	const commasCount = (str1.match(/,/g) || []).length + 1;
 
 	console.log("Number of lines:", linesCount);
 	console.log("Number of commas:", commasCount);
-	document.getElementById("countLinesNCommas").innerText = "行数："+linesCount+" | 分词数："+commasCount;
+	document.getElementById("countLinesNCommas").innerText = "行数："+linesCount+" | 分词数："+commasCount+" | 长度："+linesLength;
 }
 setInterval("refresh()", 1000);
