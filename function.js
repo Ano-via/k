@@ -215,7 +215,7 @@ function delparentheses() {
 function space2enter() {
 	var linksstr = document.getElementById("linksstr").value;
 	var result = linksstr.replace(/ *\([^)]*\)/g, "");	
-	result = result.replace(/ /g, "\n");	
+	result = result.replace(/\s+/g, "\n");	
 	document.getElementById("linksstr").value = result;
 	var copyText = document.getElementById("linksstr");
     copyText.select();
