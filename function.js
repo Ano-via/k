@@ -261,9 +261,10 @@ function countTextOcc() {
 	const linesLength = str1.length;
 	// Count the number of commas
 	const commasCount = (str1.match(/,/g) || []).length + 1;
+	const spacesCount = (str1.match(/ /g) || []).length;
 
 	console.log("Number of lines:", linesCount);
 	console.log("Number of commas:", commasCount);
-	document.getElementById("countLinesNCommas").innerText = "行数："+linesCount+" | 分词数："+commasCount+" | 长度："+linesLength;
+	document.getElementById("countLinesNCommas").innerText = "行数："+linesCount+" | 分词数："+commasCount+" | 空格数："+spacesCount+" | 长度："+linesLength;
 }
 setInterval("refresh()", 1000);
