@@ -212,7 +212,7 @@ function delparentheses() {
 	}, 3000);
 }
 
-function pth2enter() {
+function space2enter() {
 	var linksstr = document.getElementById("linksstr").value;
 	var result = linksstr.replace(/ *\([^)]*\)/g, "");	
 	result = result.replace(/ /g, "\n");	
@@ -221,12 +221,12 @@ function pth2enter() {
     copyText.select();
     copyText.setSelectionRange(0, 9999);
     document.execCommand("copy");
-	document.getElementById("pth2enter").innerHTML = "√ 已复制";
-	var obj = document.getElementById('pth2enter');
+	document.getElementById("v").innerHTML = "√ 已复制";
+	var obj = document.getElementById('space2enter');
 	obj.style.backgroundColor = "#daf2c2";
 	obj.style.color = "#397300";
 	setTimeout(function(){
-		obj.innerHTML = "去括号 + 复制";
+		obj.innerHTML = "空格 → 换行";
 		obj.style.backgroundColor = "#f2f2f2";
 		obj.style.color = "#000000";
 	}, 3000);
