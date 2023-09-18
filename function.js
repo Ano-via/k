@@ -221,7 +221,7 @@ function space2enter() {
     copyText.select();
     copyText.setSelectionRange(0, 9999);
     document.execCommand("copy");
-	document.getElementById("v").innerHTML = "√ 已复制";
+	document.getElementById("space2enter").innerHTML = "√ 已复制";
 	var obj = document.getElementById('space2enter');
 	obj.style.backgroundColor = "#daf2c2";
 	obj.style.color = "#397300";
