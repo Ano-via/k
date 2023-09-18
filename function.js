@@ -94,7 +94,7 @@ function normal16() {
 function copyPassword() {
     var copyText = document.getElementById("password");
     copyText.select();
-    copyText.setSelectionRange(0, 999);
+    copyText.setSelectionRange(0, 9999);
     document.execCommand("copy");
 }
 function copytfa() {
@@ -102,7 +102,7 @@ function copytfa() {
     if (ifTfa.length > 0) {
         var copyTfaresult = document.getElementById("twofaresult");
         copyTfaresult.select();
-        copyTfaresult.setSelectionRange(0, 999);
+        copyTfaresult.setSelectionRange(0, 9999);
         document.execCommand("copy");
         document.getElementById("copytfa").innerHTML = "√ 已复制验证码";
         var obj = document.getElementById('copytfa');
@@ -199,10 +199,30 @@ function delparentheses() {
 	document.getElementById("linksstr").value = result;
 	var copyText = document.getElementById("linksstr");
     copyText.select();
-    copyText.setSelectionRange(0, 999);
+    copyText.setSelectionRange(0, 9999);
     document.execCommand("copy");
 	document.getElementById("delparentheses").innerHTML = "√ 已复制";
 	var obj = document.getElementById('delparentheses');
+	obj.style.backgroundColor = "#daf2c2";
+	obj.style.color = "#397300";
+	setTimeout(function(){
+		obj.innerHTML = "去括号 + 复制";
+		obj.style.backgroundColor = "#f2f2f2";
+		obj.style.color = "#000000";
+	}, 3000);
+}
+
+function pth2enter() {
+	var linksstr = document.getElementById("linksstr").value;
+	var result = linksstr.replace(/ *\([^)]*\)/g, "");	
+	result = result.replace(/ /g, "\n");	
+	document.getElementById("linksstr").value = result;
+	var copyText = document.getElementById("linksstr");
+    copyText.select();
+    copyText.setSelectionRange(0, 9999);
+    document.execCommand("copy");
+	document.getElementById("pth2enter").innerHTML = "√ 已复制";
+	var obj = document.getElementById('pth2enter');
 	obj.style.backgroundColor = "#daf2c2";
 	obj.style.color = "#397300";
 	setTimeout(function(){
@@ -242,7 +262,7 @@ function generateUPC() {
   document.getElementById("linksstr").value = result;
   var copyText = document.getElementById("linksstr");
     copyText.select();
-    copyText.setSelectionRange(0, 999);
+    copyText.setSelectionRange(0, 9999);
     document.execCommand("copy");
 	document.getElementById("bulkupc").innerHTML = "√ 已复制";
 	var obj = document.getElementById('bulkupc');
