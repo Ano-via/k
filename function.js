@@ -55,10 +55,6 @@ function refresh() {
             obj.style.color = "#991a00";
         }
     }
-    var countstr = document.getElementById("linksstr").value;
-	if (countstr.length > 0) {
-		countTextOcc();
-	}
 }
 
 function normal8() {
@@ -94,7 +90,7 @@ function normal16() {
 function copyPassword() {
     var copyText = document.getElementById("password");
     copyText.select();
-    copyText.setSelectionRange(0, 9999);
+    copyText.setSelectionRange(0, 999);
     document.execCommand("copy");
 }
 function copytfa() {
@@ -102,7 +98,7 @@ function copytfa() {
     if (ifTfa.length > 0) {
         var copyTfaresult = document.getElementById("twofaresult");
         copyTfaresult.select();
-        copyTfaresult.setSelectionRange(0, 9999);
+        copyTfaresult.setSelectionRange(0, 999);
         document.execCommand("copy");
         document.getElementById("copytfa").innerHTML = "√ 已复制验证码";
         var obj = document.getElementById('copytfa');
@@ -122,7 +118,7 @@ function dividetext() {
     ptext = ptext.replace(/\t/g, "\n");
     ptext = ptext.replace(/\u0020/g, "");
     document.getElementById("dividedtext").value = ptext;
-    document.getElementById("metalink").setAttribute("href", "https://mbasic.facebook.com?email=" + ptext.substring(0, ptext.indexOf("\n")) + "&pass=" + ptext.substring(ptext.indexOf("\n") + 1, ptext.indexOf("\n", ptext.indexOf("\n") + 1)))
+    document.getElementById("metalink").setAttribute("href", "https://mbasic.facebook.com?email=" + ptext.substring(0, ptext.indexOf("\n")))
     var twofact = /[A-Z0-9]{32}/g.exec(ptext);
     document.getElementById("twofarequest").value = twofact;
     var timestamp1 = Date.parse(new Date());
@@ -194,12 +190,11 @@ function soetrack() {
 
 function delparentheses() {
 	var linksstr = document.getElementById("linksstr").value;
-	var result = linksstr.replace(/ *\([^)]*\)/g, "");	
-	result = result.replace(/\n/g, ",");	
+	var result = linksstr.replace(/ *\([^)]*\)/g, "");
 	document.getElementById("linksstr").value = result;
 	var copyText = document.getElementById("linksstr");
     copyText.select();
-    copyText.setSelectionRange(0, 9999);
+    copyText.setSelectionRange(0, 999);
     document.execCommand("copy");
 	document.getElementById("delparentheses").innerHTML = "√ 已复制";
 	var obj = document.getElementById('delparentheses');
@@ -212,209 +207,4 @@ function delparentheses() {
 	}, 3000);
 }
 
-function space2enter() {
-	var linksstr = document.getElementById("linksstr").value;
-	var result = linksstr.replace(/ *\([^)]*\)/g, "");	
-	result = result.replace(/\s+/g, "\n");	
-	document.getElementById("linksstr").value = result;
-	var copyText = document.getElementById("linksstr");
-    copyText.select();
-    copyText.setSelectionRange(0, 9999);
-    document.execCommand("copy");
-	document.getElementById("space2enter").innerHTML = "√ 已复制";
-	var obj = document.getElementById('space2enter');
-	obj.style.backgroundColor = "#daf2c2";
-	obj.style.color = "#397300";
-	setTimeout(function(){
-		obj.innerHTML = "空格 → 换行";
-		obj.style.backgroundColor = "#f2f2f2";
-		obj.style.color = "#000000";
-	}, 3000);
-}
-
-function calculateUPCChecksum(digits) {
-  var sum = 0;
-  var parity = digits.length % 2;
-  for (var i = 0; i < digits.length; i++) {
-    var digit = parseInt(digits.charAt(i));
-    if (i % 2 === parity) {
-      sum += digit * 3;
-    } else {
-      sum += digit;
-    }
-  }
-  var checksum = (10 - (sum % 10)) % 10;
-  return checksum.toString();
-}
-
-function generateUPC() {
-  var linksstrText = document.getElementById("linksstr").value;
-  var lines = linksstrText.split('\n');
-  var result = "";
-  for (var i = 0; i < lines.length; i++) {
-    var line = lines[i];
-    var digits = line.replace(/\D/g, '');
-    digits = digits.padEnd(11, '0');
-    var checksum = calculateUPCChecksum(digits);
-    var upc = digits + checksum;
-    result += upc + '\n';
-  }
-  document.getElementById("linksstr").value = result;
-  var copyText = document.getElementById("linksstr");
-    copyText.select();
-    copyText.setSelectionRange(0, 9999);
-    document.execCommand("copy");
-	document.getElementById("bulkupc").innerHTML = "√ 已复制";
-	var obj = document.getElementById('bulkupc');
-	obj.style.backgroundColor = "#daf2c2";
-	obj.style.color = "#397300";
-	setTimeout(function(){
-		obj.innerHTML = '<img height="50%" src="https://img.icons8.com/pulsar-color/48/barcode.png" alt="upc"/>&nbsp;批量UPC';
-		obj.style.backgroundColor = "#f2f2f2";
-		obj.style.color = "#000000";
-	}, 3000);
-}
-function countTextOcc() {
-	var str1 = document.getElementById("linksstr").value;
-	// Count the number of lines
-	const linesCount = str1.split(/\r\n|\r|\n/).length;
-	const linesLength = str1.length;
-	// Count the number of commas
-	const commasCount = (str1.match(/,/g) || []).length + 1;
-	const spacesCount = (str1.match(/ /g) || []).length;
-
-	console.log("Number of lines:", linesCount);
-	console.log("Number of commas:", commasCount);
-	document.getElementById("countLinesNCommas").innerText = "行数："+linesCount+" | 分词数："+commasCount+" | 空格数："+spacesCount+" | 长度："+linesLength;
-}
 setInterval("refresh()", 1000);
-function showPopup(temp1) {
-    document.getElementById("popup").style.display = "block";
-    document.getElementById("temp1").value = temp1;
-}
-
-function closePopup() {
-    document.getElementById("popup").style.display = "none";
-}
-
-function insertField(field) {
-    const inputField = document.getElementById("temp1").value;
-    const textField = document.getElementById(inputField);
-    textField.value = field;
-    closePopup();
-}
-function copyutmresult() {
-    var copyText = document.getElementById("utmresult");
-    copyText.select();
-    copyText.setSelectionRange(0, 999);
-    document.execCommand("copy");
-    document.getElementById("copybefore").innerHTML = "√ 已复制";
-    var obj = document.getElementById('copybefore');
-    obj.style.backgroundColor = "#daf2c2";
-    obj.style.color = "#397300";
-    setTimeout(function() {
-        obj.innerHTML = "复制上面";
-        obj.style.backgroundColor = "#f2f2f2";
-        obj.style.color = "#000000";
-    },
-    3000);
-}
-function shortenurl() {
-    const accessToken = '13ff8fc9c4983636f414ad6ca51b7acf6cb2d857';
-    const longUrl = document.getElementById("utmresult").value;
-    const apiUrl = 'https://api-ssl.bitly.com/v4/shorten';
-
-    fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer $ {
-                accessToken
-            }`,
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            long_url: longUrl,
-        }),
-    }).then(response = >response.json()).then(data = >{
-        const shortUrl = data.link;
-        console.log(`Bitly短链接：$ {
-            shortUrl
-        }`);
-        document.getElementById("shortenedurl").value = shortUrl;
-        var copyText = document.getElementById("shortenedurl");
-        copyText.select();
-        copyText.setSelectionRange(0, 999);
-        document.execCommand("copy");
-        document.getElementById("shortenurl").innerHTML = "√ 已复制";
-        var obj = document.getElementById('shortenurl');
-        obj.style.backgroundColor = "#daf2c2";
-        obj.style.color = "#397300";
-        setTimeout(function() {
-            obj.innerHTML = "生成短链";
-            obj.style.backgroundColor = "#f2f2f2";
-            obj.style.color = "#000000";
-        },
-        3000);
-    }).
-    catch(error = >{
-        console.error('生成Bitly短链接时发生错误:', error);
-    });
-}
-function updatetmlresult() {
-    const websiteurl = document.getElementById('websiteurl').value;
-    const utm_id = document.getElementById('utm_id').value;
-    const utm_source = document.getElementById('utm_source').value;
-    const utm_medium = document.getElementById('utm_medium').value;
-    const utm_campaign = document.getElementById('utm_campaign').value;
-    const utm_ad = document.getElementById('utm_ad').value;
-    const utm_term = document.getElementById('utm_term').value;
-    const utm_content = document.getElementById('utm_content').value;
-
-    let result = "";
-    if (websiteurl) {
-        result = websiteurl;
-        if (utm_id) {
-            result += ` & utm_id = $ {
-                utm_id
-            }`;
-        }
-        if (utm_source) {
-            result += ` & utm_source = $ {
-                utm_source
-            }`;
-        }
-        if (utm_medium) {
-            result += ` & utm_medium = $ {
-                utm_medium
-            }`;
-        }
-        if (utm_campaign) {
-            result += ` & utm_campaign$ {
-                utm_campaign
-            }`;
-        }
-        if (utm_ad) {
-            result += ` & utm_ad = $ {
-                utm_ad
-            }`;
-        }
-        if (utm_term) {
-            result += ` & utm_term$ {
-                utm_term
-            }`;
-        }
-        if (utm_content) {
-            result += ` & utm_content = $ {
-                utm_content
-            }`;
-        }
-    }
-    if (result.indexOf('?') === -1 && result.indexOf('&') !== -1) {
-        result = result.replace('&', '?');
-    }
-
-    document.getElementById('utmresult').value = result;
-
-}
-
-setInterval("updatetmlresult()", 1000);
