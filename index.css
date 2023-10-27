@@ -6,56 +6,36 @@
 }
 body {
     background-color: #ffffff;
+    justify-content: center;
+    align-items: center;
     display: flex;
     min-height: 100vh;
-	flex-direction: column; /* 垂直排列 */	
 }
 .content{
 	max-width: 1200px;
 	text-align: center;
-	margin: 0 auto; /* 居中对齐 */
-    flex-grow: 1; /* 填充剩余空间 */
-    display: flex;
-    flex-wrap: wrap; /* 让.box元素自动换行 */
-    justify-content: center; /* 水平居中对齐 */
 }
 .box{
     background-color: white;
+    padding-top: 30px;	
     padding: 30px;
 	max-width: 50%;
-	flex-basis: calc(50% - 60px); /* 每个.box元素的宽度 */
-    margin: 15px; /* 间距 */
+	float: left;
 }
-        
-        /* 添加媒体查询，根据屏幕宽度修改样式 */
-@media (min-width: 768px) {
-	body {
-		flex-direction: row;
- /* 横排 */
-	}
-
-	.box {
-		flex-basis: calc(33.33% - 30px);
- /* 电脑横排时每个.box元素的宽度 */
-	}
-}
-
-.box h2 {
+.box h2{
 	margin-bottom: 40px;
 	text-align: center;
 	font-size: 26px;
 	color: #000000;
 	font-family: sans-serif;
 }
-
 .box2 {
 	margin-top: 40px;
 	width: 25%;
 	float: left;
 }
-
 input {
-	margin-top: 10px;
+	margin-top: 20px;
 	padding: 15px;
 	user-select: none;
 	height: 50px;
@@ -66,22 +46,18 @@ input {
 	outline: none;
 	font-size: 22px;
 }
-
-input::placeholder {
+input::placeholder{
 	font-size: 23px;
 }
-
-#twofaresult {
+#twofaresult{
 	width: 155px;
 	text-align: center;
 }
-
-#refreshtime {
+#refreshtime{
 	margin-left: 30px;
 	width: 155px;
 	text-align: center;
 }
-
 textarea {
 	width: 530px;
 	margin-top: 20px;
@@ -89,190 +65,159 @@ textarea {
 	white-space: pre-line;
 	padding: 10px;
 }
-
-textarea::placeholder {
+textarea::placeholder{
 	font-size: 23px;
 	padding: 5px;
 }
-
-.toplogo {
-	position: absolute;
-	top: 8px;
-	left: 15px;
-	width: 24px;
+.toplogo{
+	position:absolute;
+	top:8px;
+   	left:15px;
+	width:24px;
 }
-
-.btn1 {
-	font-family: sans-serif;
-	font-size: 15px;
-	margin-top: 20px;
-	width: 155px;
-	height: 50px;
-	text-align: center;
-	background-color: rgb(242, 242, 242);
-	display: flex;
-	color: black;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-	border-radius: 7px;
+.btn1{
+    font-family: sans-serif;
+    font-size: 15px;
+    margin-top: 20px;
+    width: 155px;
+    height: 50px;
+    text-align: center;
+    background-color: rgb(242, 242, 242);
+    display: flex;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 7px;
 	text-decoration: none;
 }
-
-.btn2 {
-	margin-left: 30px;
+.btn2{
+    margin-left: 30px;
 	font-family: sans-serif;
-	font-size: 15px;
-	margin-top: 20px;
-	width: 155px;
-	height: 50px;
-	text-align: center;
-	background-color: rgb(242, 242, 242);
-	display: flex;
-	color: black;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-	border-radius: 7px;
+    font-size: 15px;
+    margin-top: 20px;
+    width: 155px;
+    height: 50px;
+    text-align: center;
+    background-color: rgb(242, 242, 242);
+    display: flex;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 7px;
 	text-decoration: none;
 }
-
-.btn3 {
-	margin-left: 215px;
+.btn3{
+    margin-left: 215px;
 	font-family: sans-serif;
-	font-size: 15px;
-	margin-top: 20px;
-	width: 155px;
-	height: 50px;
-	text-align: center;
-	background-color: rgb(242, 242, 242);
-	display: flex;
-	color: black;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-	border-radius: 7px;
+    font-size: 15px;
+    margin-top: 20px;
+    width: 155px;
+    height: 50px;
+    text-align: center;
+    background-color: rgb(242, 242, 242);
+    display: flex;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 7px;
 	text-decoration: none;
 }
-
-.btn4 {
-	margin-top: 10px;
-	margin-left: 5px;
-	font-family: sans-serif;
-	font-size: 15px;
-	width: 50px;
-	height: 50px;
-	text-align: center;
-	background-color: rgb(242, 242, 242);
-	display: flex;
-	color: black;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-	border-radius: 7px;
-	text-decoration: none;
+.button:hover{
+    color: black;
+    background-color: rgb(229,229,229);
 }
-
-.button:hover {
-	color: black;
-	background-color: rgb(229,229,229);
-}
-
-#password {
+#password{
 	margin-top: 0px;
 }
-
-#pastetext {
+#pastetext{
 	margin-top: 0px;
 }
-
-#footer {
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	height: 30px;
-/*脚部的高度*/
-	background: white;
-	clear: both;
+#footer { 
+	position: absolute; 
+	bottom: 0; 
+	width: 100%; 
+	height: 30px;/*脚部的高度*/ 
+	background: white; 
+	clear: both; 
 	text-indent: 2em;
 	font-size: 13px;
-}
-
+} 
 .header {
-	position: absolute;
-	top: 0;
+	position: absolute; 
+	top: 0; 
 	width: 100%;
-	clear: both;
+	clear: both; 
 }
-
-.nav a {
-	display: block;
-	width: 200px;
+.nav a{
+    display: block;
+    width: 200px;
 	height: 40px;
-	color: black;
+    color: black;
 	line-height: 40px;
-	background-color: white;
-	text-align: center;
-	text-decoration: none;
+    background-color: white;
+    text-align: center;
+    text-decoration: none;
 	font-size: 18px;
 }
-        /* 鼠标悬停a标签事改变背景色 */
-.nav a:hover {
-	background-color: rgb(245,246,247);
+/* 鼠标悬停a标签事改变背景色 */
+.nav a:hover{
+    background-color: rgb(245,246,247);
 }
-        /* 去除无序列表 无标记 取消默认的内边距  */
-.nav ul {
-	list-style: none;
-	padding: 0;
+/* 去除无序列表 无标记 取消默认的内边距  */
+.nav ul{
+    list-style: none;
+    padding: 0;
 }
-
-.drop-down > ul {
-	background-color: white;
+.drop-down > ul{
+    background-color: white;
 }
-        /* 一级菜单设置浮动 使之在一行上面 */
+/* 一级菜单设置浮动 使之在一行上面 */
 .drop-down > ul >li {
-	float: left;
-            /* 为了让二级菜单栏参照定位  */
-	position: relative;
+    float: left;
+    /* 为了让二级菜单栏参照定位  */
+    position: relative;
 }
-        /* 一级菜单栏悬停鼠标时显示二级菜单栏 */
-.drop-down > ul >li:hover > ul {
-	display: block;
+/* 一级菜单栏悬停鼠标时显示二级菜单栏 */
+.drop-down > ul >li:hover > ul{
+    display: block;
 }
-        /* 二级菜单栏绝对定位 脱离文档 默认不显示 */
+/* 二级菜单栏绝对定位 脱离文档 默认不显示 */
 .drop-down > ul >li > ul {
-	position: absolute;
-	display: none;
+    position: absolute;
+    display: none;
 }
-        /* 在二级菜单栏悬停鼠标时 显示相对于的三级菜单栏 */
-.drop-down > ul > li > ul > li:hover > ul {
-	display: block;
+/* 在二级菜单栏悬停鼠标时 显示相对于的三级菜单栏 */
+.drop-down > ul > li > ul > li:hover > ul{
+    display: block;
 }
-        /* 二级菜单栏相对定位 为下面三级菜单栏绝对定位做准备 */
-.drop-down > ul > li > ul > li {
-	position: relative;
+/* 二级菜单栏相对定位 为下面三级菜单栏绝对定位做准备 */
+.drop-down > ul > li > ul > li{
+    position: relative;
 }
-        /* 三级菜单栏绝对定位 脱离文档流 并且位于二级菜单栏右边 默认不显示 */
+/* 三级菜单栏绝对定位 脱离文档流 并且位于二级菜单栏右边 默认不显示 */
 .drop-down > ul > li > ul > li > ul {
-	position: absolute;
-	left: 100%;
-	top: 0;
-	display: none;
+    position: absolute;
+    left: 100%;
+    top:0;
+    display: none;
 }
-        /* 清除浮动 兼容低版本IE */
-.clearfix {
-	*zoom: 1;
+/* 清除浮动 兼容低版本IE */
+.clearfix{
+    *zoom: 1;
 }
-        /* 清除一级菜单栏浮动的操作 */
-.clearfix ::after {
-	content: ".";
-	display: block;
-	clear: both;
-        /* 兼容低版本Firefox*/
-	height: 0;
-	overflow: hidden;
+/* 清除一级菜单栏浮动的操作 */
+.clearfix ::after{
+    content: ".";
+    display: block;
+    clear: both;
+/* 兼容低版本Firefox*/
+    height: 0;
+    overflow: hidden;
 }
-        /* Style for the popup containers */
+/* Style for the popup containers */
 .popup {
 	display: none;
 	position: fixed;
@@ -285,53 +230,11 @@ textarea::placeholder {
 	overflow: auto;
 	background-color: rgba(0, 0, 0, 0.8);
 }
-        
-        /* Style for the popup images */
+
+/* Style for the popup images */
 .popup img {
 	display: block;
 	margin: 0 auto;
 	max-width: 80%;
 	max-height: 80%;
-}
-        /* 样式化弹窗 */
-.popup {
-	display: none;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.7);
-}
-
-.popup-content {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	background: white;
-	padding: 20px;
-	border: 1px solid #ccc;
-}
-
-.button2 {
-	font-size: 20;
-	margin-top: 10;
-	margin-bottom: 20;
-}
-
-.input2 {
-	margin-left: 30px;
-	font-family: sans-serif;
-	font-size: 15px;
-	margin-top: 20px;
-	width: 155px;
-	height: 50px;
-	text-align: center;
-	display: flex;
-	color: black;
-	justify-content: center;
-	align-items: center;
-	border-radius: 7px;
-	text-decoration: none;
 }
