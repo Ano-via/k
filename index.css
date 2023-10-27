@@ -1,40 +1,30 @@
 * {
-	margin: 0;
-	padding: 0;
-	user-select: none;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    box-sizing: border-box;
 }
-
 body {
-	background-color: #ffffff;
-	display: flex;
-	min-height: 100vh;
-	flex-direction: column;
- /* 垂直排列 */
+    background-color: #ffffff;
+    display: flex;
+    min-height: 100vh;
+	flex-direction: column; /* 垂直排列 */	
 }
-
-.content {
+.content{
 	max-width: 1200px;
 	text-align: center;
-	margin: 0 auto;
- /* 居中对齐 */
-	flex-grow: 1;
- /* 填充剩余空间 */
-	display: flex;
-	flex-wrap: wrap;
- /* 让.box元素自动换行 */
-	justify-content: center;
- /* 水平居中对齐 */
+	margin: 0 auto; /* 居中对齐 */
+    flex-grow: 1; /* 填充剩余空间 */
+    display: flex;
+    flex-wrap: wrap; /* 让.box元素自动换行 */
+    justify-content: center; /* 水平居中对齐 */
 }
-
-.box {
-	background-color: white;
-	padding: 30px;
+.box{
+    background-color: white;
+    padding: 30px;
 	max-width: 50%;
-	flex-basis: calc(50% - 60px);
- /* 每个.box元素的宽度 */
-	margin: 15px;
- /* 间距 */
+	flex-basis: calc(50% - 60px); /* 每个.box元素的宽度 */
+    margin: 15px; /* 间距 */
 }
         
         /* 添加媒体查询，根据屏幕宽度修改样式 */
