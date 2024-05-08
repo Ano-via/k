@@ -1,0 +1,27 @@
+name: Send Emails
+
+on:
+  schedule:
+    - cron: '*/1 * * * *' # 每分钟执行一次
+
+jobs:
+  send_emails:
+    name: Send Emails
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x' # 选择你的 Python 版本
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install yagmail  # 如果有依赖的话
+
+    - name: Execute send_emails.py
+      run: python send_emails.py
